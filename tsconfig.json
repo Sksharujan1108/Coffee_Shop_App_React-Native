@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "noImplicitThis": false,
+    "paths": {
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/screens/*": [
+        "./src/screens/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ],
+      "@/mirage/*": [
+        "./mirage/*"
+      ],
+      "@/assets/*": [
+        "./src/assets/*"
+      ],
+      "@/features/*": [
+        "./src/features/*"
+      ],
+      "@/models/*": [
+        "./src/models/*"
+      ],
+      "@/src/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "typeRoots": [
+    "types"
+  ],
+  "extends": "expo/tsconfig.base"
+}
