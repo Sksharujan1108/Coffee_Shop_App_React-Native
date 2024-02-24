@@ -21,11 +21,11 @@ export const useStore = create(
           set(
             produce(state => {
               let found = false;
-                for(let i = 0; i < state.CartList.length; i++) {
+                for(let i = 0; i < state.CartList?.length; i++) {
                   if(state.CartList[i].id === cartItem.id) {
                       found = true;
                       let size = false;
-                    for(let j = 0; j < state.CartList[i].prices.length; j++){
+                    for(let j = 0; j < state.CartList[i].prices?.length; j++){
                       if(state.CartList[i].prices[j].size === cartItem.prices[0].size){
                         size = true;
                         state.CartList[i].prices[j].quantity++; // update quantity of existing item in the list
@@ -35,7 +35,7 @@ export const useStore = create(
                     if(!size) {
                       state.CartList[0].prices.push(cartItem.prices[0])
                     }
-                    state.CartList[i].price.short((a: any, b: any) => {
+                    state.CartList[i].price?.short((a: any, b: any) => {
                       if(a.size > b.size) {
                         return -1
                       }
@@ -57,9 +57,9 @@ export const useStore = create(
             set(
               produce(state => {
                 let totalPrice = 0;
-                for(let i=0; i < state.CartList.length; i++) {
+                for(let i=0; i < state.CartList?.length; i++) {
                   let tempPrice = 0;
-                  for(let j=0; j < state.CartList[i].prices.length; j++) {
+                  for(let j=0; j < state.CartList[i].prices?.length; j++) {
                     tempPrice = 
                       tempPrice +  parseFloat(state.CartList[i].prices[j].price) *
                         state.CartList[i].prices[j].quantity;
@@ -74,20 +74,20 @@ export const useStore = create(
               set(
                 produce(state => {
                   if(type === 'Coffee') {
-                    for(let i = 0; i < state.CoffeeList.length; i++) {
+                    for(let i = 0; i < state.CoffeeList?.length; i++) {
                       if(state.CoffeeList[i].id === id){
-                        if(state.CoffeeList[i].favorite === false) {
-                          state.CoffeeList[i].favorite = true;
+                        if(state.CoffeeList[i]. favourite === false) {
+                          state.CoffeeList[i]. favourite = true;
                           state.FavoritesList.unshift(state.CoffeeList[i]);
                         }
                         break;
                       }
                     }
                   } else if(type === 'Bean'){
-                    for(let i = 0; i < state.BeanList.length; i++) {
+                    for(let i = 0; i < state.BeanList?.length; i++) {
                       if(state.BeanList[i].id === id){
-                        if(state.BeanList[i].favorite === false) {
-                          state.BeanList[i].favorite = true;
+                        if(state.BeanList[i]. favourite === false) {
+                          state.BeanList[i]. favourite = true;
                           state.FavoritesList.unshift(state.BeanList[i]);
                         }
                         break;
@@ -99,32 +99,32 @@ export const useStore = create(
               deleteFromFavoriteList: (type: string, id: string) =>
                 set(produce(state => {
                   if(type === 'Coffee') {
-                    for(let i = 0; i < state.CoffeeList.length; i++) {
+                    for(let i = 0; i < state.CoffeeList?.length; i++) {
                       if(state.CoffeeList[i].id == id){
-                        if(state.CoffeeList[i].favorite === true) {
-                          state.CoffeeList[i].favorite = false;
+                        if(state.CoffeeList[i]. favourite === true) {
+                          state.CoffeeList[i]. favourite = false;
                         }
                         break;
                       }
                     }
                   } else if(type === 'Beans') {
-                    for(let i = 0; i < state.BeanList.length; i++) {
+                    for(let i = 0; i < state.BeanList?.length; i++) {
                       if(state.BeanList[i].id == id){
-                        if(state.BeanList[i].favorite === true) {
-                          state.BeanList[i].favorite = false;
+                        if(state.BeanList[i]. favourite === true) {
+                          state.BeanList[i]. favourite = false;
                         }
                         break;
                       }
                     }
                   }
                   let spliceIndex = -1;
-                  for (let i = 0; i < state.FavoriteList.length; i++) {
+                  for (let i = 0; i < state.FavoriteList?.length; i++) {
                     if(state.FavoriteList[i].id === id) {
                       spliceIndex = i;
                       break;
                     }
                   }
-                  state.FavoriteList.splice(spliceIndex, 1);
+                  state.FavoriteList?.splice(spliceIndex, 1);
                 })) 
       }),
       {
@@ -132,4 +132,4 @@ export const useStore = create(
         storage: createJSONStorage(() => AsyncStorage),
       },
     ),
-  );
+  )

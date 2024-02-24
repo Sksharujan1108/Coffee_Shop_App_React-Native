@@ -7,7 +7,7 @@ import { COLORS } from './src/theme/theme';
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar  backgroundColor = {COLORS.primaryBlackRGBA} />
+      <StatusBar backgroundColor = {COLORS.primaryOrangeHex} />
        <AuthStack/>
     </NavigationContainer>
   );
