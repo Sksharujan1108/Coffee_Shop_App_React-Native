@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ScrollView, StatusBar, Text, View } from 'react-native'
-import React from 'react'
+import { ScrollView, StatusBar, Text, TouchableWithoutFeedback, View } from 'react-native'
+import React, { useState } from 'react'
 import { COLORS } from '@/src/theme/theme'
 import { styles } from './style'
 import ImageBackgroundInfo from '@/src/component/ImageBackgroundInfo'
@@ -9,9 +9,11 @@ import { useStore } from '@/src/feature/store/store'
 const DetailsScreen = ({ navigation, route }: any) => {
   console.log('DetailsScreen', route)
 
+  const [fullDesc, setFullDesc] = useState(false)
+
   const ItemOfIndex = useStore((state: any) =>
-    route.params.type == 'Coffee' ? state.CoffeeList : state.BeanList,
-  )[route.params.index];
+      route.params?.type === 'Coffee' ? state.CoffeeList : state.BeanList,
+  )[route.params?.index]
 
   const addToFavoriteList = useStore((state: any) => state.addToFavoriteList)
 
@@ -20,6 +22,8 @@ const DetailsScreen = ({ navigation, route }: any) => {
   const ToggleFavorite = ( favourite: boolean, type: string, id: string) => {
     favourite ?  deleteFromFavoriteList(type, id) : addToFavoriteList(type, id)
   }
+
+
 
   const BackHandler = () => {
     navigation.pop()
@@ -49,6 +53,25 @@ const DetailsScreen = ({ navigation, route }: any) => {
           BackHandler = {BackHandler}
           ToggleFavorite = {ToggleFavorite}
         />
+
+         <View style = {styles.FooterInfoArea}>
+           <Text style = {styles.InfoTitle}> Description </Text>
+           {fullDesc ? 
+              (
+                <TouchableWithoutFeedback 
+                  onPress = {() => {setFullDesc(prev => !prev)}}
+                >
+                    <Text style = {styles.DescriptionText}> {ItemOfIndex?.description} </Text>
+                </TouchableWithoutFeedback>
+              ) : (
+                <TouchableWithoutFeedback  
+                  onPress = {() => {setFullDesc(prev => !prev)}}
+                >
+                  <Text numberOfLines = {3} style = {styles.DescriptionText}> {ItemOfIndex?.description} </Text>
+                </TouchableWithoutFeedback>
+              )
+           }
+         </View>
 
       </ScrollView>
       <Text>DetailsScreen</Text>
