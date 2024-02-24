@@ -18,8 +18,10 @@ const DetailsScreen = ({ navigation, route }: any) => {
 
   const [price, setPrice] = useState(ItemOfIndex.prices[0])
 
-  const addToFavoriteList = useStore((state: any) => state.addToFavoriteList)
+  const addToCart = useStore((state: any) => state.addToCart)
+  const calculateCartPrice = useStore((state: any) => state.calculateCartPrice)
 
+  const addToFavoriteList = useStore((state: any) => state.addToFavoriteList)
   const deleteFromFavoriteList = useStore((state: any) => state.deleteFromFavoriteList)
 
   const ToggleFavorite = ( favourite: boolean, type: string, id: string) => {
@@ -29,6 +31,31 @@ const DetailsScreen = ({ navigation, route }: any) => {
   const BackHandler = () => {
     navigation.pop()
   }
+
+
+  const addToCarthandler = ({
+    id,
+    index,
+    name,
+    roasted,
+    imagelink_square,
+    special_ingredient,
+    type,
+    price,
+  }: any) => {
+    addToCart({
+      id,
+      index,
+      name,
+      roasted,
+      imagelink_square,
+      special_ingredient,
+      type,
+      prices: [{...price, quantity: 1}],
+    });
+    calculateCartPrice();
+    navigation.navigate('Cart');
+  };
 
   console.log('ItemOfIndex', ItemOfIndex?. CoffeeList)
 
@@ -74,7 +101,7 @@ const DetailsScreen = ({ navigation, route }: any) => {
                 )
             }
             <View style = {{paddingTop: SPACING.space_12}}>
-              <Text style = {[styles.InfoTitle, ]}> Size </Text>
+              <Text style = {[styles.InfoTitle, {paddingBottom: SPACING.space_12}]}> Size </Text>
             </View>
             
             <View style = {styles.SizeOuterContainer}>
@@ -118,7 +145,18 @@ const DetailsScreen = ({ navigation, route }: any) => {
         <PaymentFooter
           price = {price}
           buttonTitle = 'Add to Cart'
-          buttonPressHandler = {() => {}}
+          buttonPressHandler = {() => {
+            addToCarthandler({
+              id: ItemOfIndex.id,
+              index: ItemOfIndex.index,
+              name: ItemOfIndex.name,
+              roasted: ItemOfIndex.roasted,
+              imagelink_square: ItemOfIndex.imagelink_square,
+              special_ingredient: ItemOfIndex.special_ingredient,
+              type: ItemOfIndex.type,
+              price: price,
+            });
+          }}
         />
 
       </ScrollView>

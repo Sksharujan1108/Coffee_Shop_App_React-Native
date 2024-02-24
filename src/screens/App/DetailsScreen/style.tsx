@@ -9,9 +9,10 @@ export const styles = StyleSheet.create({
     ScrollViewFlex: {
         // change the backgroundColor of scrollView to transparent so that it can
       flexGrow: 1,
+      // justifyContent: 'space-between',
     },
     FooterInfoArea: {
-      padding: SPACING.space_20,
+      padding: SPACING.space_18,
     },
     InfoTitle: {
       fontFamily: FONTFAMILY.poppins_semibold,
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
     SizeBox: {
       flex: 1,
       backgroundColor: COLORS.primaryDarkGreyHex,
-      borderRadius: BORDERRADIUS.radius_15,
+      borderRadius: BORDERRADIUS.radius_10,
       height: SPACING.space_24 * 2 ,
       justifyContent:'center',
       alignItems: 'center',

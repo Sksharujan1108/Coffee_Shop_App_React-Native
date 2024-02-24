@@ -35,7 +35,7 @@ export const useStore = create(
                     if(!size) {
                       state.CartList[0].prices.push(cartItem.prices[0])
                     }
-                    state.CartList[i].price.short((a: any, b: any) => {
+                    state.CartList[i].price?.short((a: any, b: any) => {
                       if(a.size > b.size) {
                         return -1
                       }
