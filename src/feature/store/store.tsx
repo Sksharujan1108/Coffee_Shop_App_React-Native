@@ -32,12 +32,12 @@ export const useStore = create(
                         break;
                       }
                     }
-                    if(!size) {
-                      state.CartList[0].prices.push(cartItem.prices[0])
+                    if(size === false) {
+                      state.CartList[i].prices.push(cartItem.prices[0])
                     }
-                    state.CartList[i].price?.short((a: any, b: any) => {
-                      if(a.size > b.size) {
-                        return -1
+                    state.CartList[i].prices.sort((a: any, b: any) => {
+                      if (a.size > b.size) {
+                        return -1;
                       }
                       if (a.size < b.size) {
                         return 1
@@ -47,7 +47,7 @@ export const useStore = create(
                     break;
                   }
                 }
-                if (!found) {
+                if (found ===  false) {
                   state.CartList.push(cartItem);
                 }
             }),

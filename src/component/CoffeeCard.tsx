@@ -31,7 +31,7 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({
     name, 
     average_rating, 
     price, 
-    // buttonPressHandler
+    buttonPressHandler
 }) => {
     return (
         <LinearGradient
@@ -63,7 +63,21 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({
                 <Text style = {styles.CardPriceCurrency}> $ 
                    <Text style = {styles.CardPrice}> {price} </Text> 
                 </Text>
-                <TouchableOpacity onPress = {() => {}}>
+                <TouchableOpacity 
+                    onPress = {() => {
+                       buttonPressHandler({
+                         id,
+                         index,
+                         type,
+                         roasted,
+                         imagelink_square,
+                         special_ingredient,
+                         name,
+                         average_rating,
+                         prices: [{...price, quantity: 1}]
+                       })
+                    }}
+                >
                     <BGIcon
                         color={COLORS.primaryWhiteHex}
                         name={'add'}
