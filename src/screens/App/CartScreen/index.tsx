@@ -4,7 +4,8 @@ import { useStore } from '@/src/feature/store/store'
  
  const CartScreen = () => {
   const CartList = useStore((state: any) => state.CartList) 
-  console.log('CoffeeList********CartList***', CartList)
+  console.log('CoffeeList********CartList***', CartList.length)
+
    return (
      <View>
        <Text>CartScreen</Text>
