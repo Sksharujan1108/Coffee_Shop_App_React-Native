@@ -17,8 +17,8 @@ const EmptyListAnimation = (props:EmptyListAnimationProps) => {
       <LottieView
         style = {styles.LottieStyle}
         source = {require('../lottie/CoffeeLottie.json')}
-        autoPlay
-        loop
+        autoPlay = {true}
+        loop = {true}
       />
       <Text style = {styles.LottieText}>{title}</Text>
 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     LottieStyle: {
-      height: 300,
+      height: 250,
     },
     LottieText: {
         fontFamily: FONTFAMILY.poppins_medium,
