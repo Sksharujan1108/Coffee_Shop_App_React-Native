@@ -16,7 +16,7 @@ const EmptyListAnimation = (props:EmptyListAnimationProps) => {
 
       <LottieView
         style = {styles.LottieStyle}
-        source = {require('../lottie/coffeecup.json')}
+        source = {require('../lottie/CoffeeLottie.json')}
         autoPlay
         loop
       />
