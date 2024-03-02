@@ -262,7 +262,7 @@ const HomeScreen = ({navigation}: any) => {
                   name = {item.name}
                   special_ingredient  = {item.special_ingredient}
                   average_rating = {item.average_rating}
-                  price = {item.prices[2].price}
+                  price = {item.prices[2]}
                   buttonPressHandler = {CoffeeCartAddToCart}
                 />
               </TouchableOpacity>
@@ -299,7 +299,7 @@ const HomeScreen = ({navigation}: any) => {
                   name = {item.name}
                   special_ingredient  = {item.special_ingredient}
                   average_rating = {item.average_rating}
-                  price = {item.prices[2].price}
+                  price = {item?.prices[2]}
                   buttonPressHandler = {CoffeeCartAddToCart}
                 />
               </TouchableOpacity>

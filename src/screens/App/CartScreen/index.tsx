@@ -77,9 +77,9 @@ import CartItem from '@/src/component/CartItem';
             </View>
             {CartList.length !== 0 ? (
               <PaymentFooter
-                // buttonPressHandler={
-                //   buttonPressHandler()
-                // }
+                buttonPressHandler={
+                  () => {}
+                }
                 buttonTitle = 'Pay'
                 price = {{price: CartPrice, currency: 'Lk'}}
               /> 

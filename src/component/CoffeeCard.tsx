@@ -61,7 +61,7 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({
 
             <View style = {styles.CartFooterRow}>
                 <Text style = {styles.CardPriceCurrency}> $ 
-                   <Text style = {styles.CardPrice}> {price} </Text> 
+                   <Text style = {styles.CardPrice}> {price.price} </Text> 
                 </Text>
                 <TouchableOpacity 
                     onPress = {() => {
