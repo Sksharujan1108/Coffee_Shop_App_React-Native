@@ -1,4 +1,4 @@
- import { ScrollView, StatusBar, Text, View } from 'react-native'
+ import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native'
  import React from 'react'
 import { useStore } from '@/src/feature/store/store'
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
@@ -6,8 +6,10 @@ import { styles } from './styles';
 import { COLORS } from '@/src/theme/theme';
 import HeaderBar from '@/src/component/HeaderBar';
 import EmptyListAnimation from '@/src/component/EmptyListAnimation';
+import PaymentFooter from '@/src/component/PaymentFooter';
+import CartItem from '@/src/component/CartItem';
  
- const CartScreen = () => {
+ const CartScreen = ({navigation, route}: any) => {
   const CartList = useStore((state: any) => state.CartList) 
   const CartPrice = useStore((state: any) => state.CartPrice)
 
@@ -23,6 +25,10 @@ import EmptyListAnimation from '@/src/component/EmptyListAnimation';
   console.log('CartPrice********CartPrice***', CartPrice)
 
   const tabBarHeight = useBottomTabBarHeight();
+
+  const buttonPressHandler = () => {
+    navigation.push('Payment')
+  }
 
    return (
      <View style = {styles.ScreenContainer}>
@@ -47,10 +53,39 @@ import EmptyListAnimation from '@/src/component/EmptyListAnimation';
                   <EmptyListAnimation title = {'Cart Is Empty'} />
                 ) : 
                   (
-                    <></>
+                    <View style = {styles.ListItemContainer}> 
+                      {CartList.map((data: any) => (
+                        <TouchableOpacity key = {data.id}
+                          onPress = {() => {}} 
+                        >
+                          <CartItem
+                            id = {data.id}
+                            name = {data.name}
+                            imagelink_square = {data.imagelink_square}
+                            special_ingredient = {data.special_ingredient}
+                            roasted = {data.roasted}
+                            prices = {data.prices}
+                            type = {data.type}
+                            incrementCartItemQuantityHandler = {() => {}}
+                            decrementCartItemQuantityHandler = {() => {}}
+                          />
+                        </TouchableOpacity>
+                      ))}
+                    </View>
                   )
               }
             </View>
+            {CartList.length !== 0 ? (
+              <PaymentFooter
+                // buttonPressHandler={
+                //   buttonPressHandler()
+                // }
+                buttonTitle = 'Pay'
+                price = {{price: CartPrice, currency: 'Lk'}}
+              /> 
+            ): (
+              <></>
+            )}
           </View>
             
         </ScrollView>

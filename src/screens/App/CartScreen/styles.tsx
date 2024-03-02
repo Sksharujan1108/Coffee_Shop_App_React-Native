@@ -1,4 +1,4 @@
-import { COLORS } from '@/src/theme/theme'
+import { COLORS, SPACING } from '@/src/theme/theme'
 import { StyleSheet} from 'react-native'
 
 
@@ -17,6 +17,9 @@ export const styles = StyleSheet.create({
         // backgroundColor: 'red'
     },
     ItemContainer: {
-        flex: 1,
+       flex: 1,
+    },
+    ListItemContainer: {
+        paddingHorizontal: SPACING.space_28
     }
 })
